@@ -1,0 +1,45 @@
+# Tables:
+
+# Listings
+#   description
+#   price
+#   status
+#   title
+#   location
+#   seller_id
+#   image
+#   category_id
+#   buyer_id
+#   created_at
+#   updated_at
+#   id
+
+# Categories
+#   name
+#   id
+#   created_at
+#   updated_at
+
+
+
+# Users
+#   email
+#   password
+#   name
+#   created_at
+#   updated_at
+#   id
+
+
+
+# Conversations
+#   id
+#   item_id
+#   seller_id
+#   buyer_id
+#   created_at
+#   updated_at
+#   seller_body
+#   buyer_body
+
+#   # has_many :conversation_users
