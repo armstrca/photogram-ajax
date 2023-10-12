@@ -1,8 +1,6 @@
 class LikesController < ApplicationController
   before_action :set_like, only: %i[ show edit update destroy ]
 
-  before_action :ensure_current_user_is_owner, only: [:destroy, :create]
-
   # GET /likes or /likes.json
   def index
     @likes = Like.all
@@ -29,7 +27,6 @@ class LikesController < ApplicationController
   # POST /likes or /likes.json
   def create
     @like = Like.new(like_params)
-    @like.fan_id = current_user
 
     respond_to do |format|
       if @like.save
@@ -39,7 +36,6 @@ class LikesController < ApplicationController
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @like.errors, status: :unprocessable_entity }
-        format.js
       end
     end
   end
@@ -66,9 +62,7 @@ class LikesController < ApplicationController
       format.html { redirect_back fallback_location: root_url, notice: "Like was successfully destroyed." }
       format.json { head :no_content }
       
-      format.js do
-        render template: "likes/destroy"
-      end
+      format.js 
     end
   end
 
@@ -77,13 +71,6 @@ class LikesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_like
     @like = Like.find(params[:id])
-  end
-
-  def ensure_current_user_is_owner
-    @like = Like.find(params[:id])
-    if current_user != @like.fan_id
-      redirect_back fallback_location: root_url, alert: "You're not authorized for that."
-    end
   end
 
   # Only allow a list of trusted parameters through.
