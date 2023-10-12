@@ -1,0 +1,9 @@
+var added_like = $("<%= j(render @like) %>");
+
+added_like.hide();
+
+$("#<%= dom_id(@like.photo) %>_new_like_form").before(added_like);
+
+added_like.slideDown();
+
+$("#<%= dom_id(@like.photo) %>_new_like_form #like_body").val("");
