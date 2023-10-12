@@ -1,0 +1,1 @@
+$("#<%= dom_id(@follow_request.id) %>_likes").replaceWith("<%= j(render 'users/show', follow_request: @follow_request.id) %>")
