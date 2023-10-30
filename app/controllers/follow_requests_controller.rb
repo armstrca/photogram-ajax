@@ -8,6 +8,7 @@ class FollowRequestsController < ApplicationController
 
   # GET /follow_requests/1 or /follow_requests/1.json
   def show
+    format.js
   end
 
   # GET /follow_requests/new
@@ -17,6 +18,7 @@ class FollowRequestsController < ApplicationController
 
   # GET /follow_requests/1/edit
   def edit
+    format.js
   end
 
   # POST /follow_requests or /follow_requests.json
@@ -28,9 +30,11 @@ class FollowRequestsController < ApplicationController
       if @follow_request.save
         format.html { redirect_back fallback_location: root_url, notice: "Follow request was successfully created." }
         format.json { render :show, status: :created, location: @follow_request }
+        format.js
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @follow_request.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -41,9 +45,11 @@ class FollowRequestsController < ApplicationController
       if @follow_request.update(follow_request_params)
         format.html { redirect_back fallback_location: root_url, notice: "Follow request was successfully updated." }
         format.json { render :show, status: :ok, location: @follow_request }
+        format.js
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @follow_request.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -54,6 +60,7 @@ class FollowRequestsController < ApplicationController
     respond_to do |format|
       format.html { redirect_back fallback_location: root_url, notice: "Follow request was successfully destroyed." }
       format.json { head :no_content }
+      format.js
     end
   end
 
